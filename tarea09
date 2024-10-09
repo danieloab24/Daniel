@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main() {
+    char *frase, palabras[10][20]; // **palabras;
+    char salidas[10][20];
+    int n, m, i;
+    
+    frase = (char *) malloc(sizeof(char) * 100);
+    printf("Ingrese una frase:\n");
+    fgets(frase, 100, stdin);
+    printf("%s\n", frase);
+    
+    printf("Ingrese el número de palabras a buscar:\n");
+    scanf("%d", &n);
+    
+    i = 0;
+    while (i < n) {
+        printf("Ingresa la palabra a buscar:\n");
+        scanf("%s", palabras[i++]);
+    }
+
+    printf("Dividiendo la cadena: \"%s\" en subcadenas:\n", frase);
+    char *token = strtok(frase, " ,.-"); 
+    while (token != NULL) {
+        printf("%s\n", token);
+        token = strtok(NULL, " ,.-");
+    }
+
+    for (i = 0; i < n; i++) {
+        if (strcmp(frase, palabras[i]) == 0) {
+            printf("La palabra '%s' se encuentra en la frase.\n", palabras[i]);
+        }
+    }
+    free(frase);
+
+    return 0;
+}
